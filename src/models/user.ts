@@ -38,10 +38,11 @@ schema.pre("save", async function (next) {
   if (!this.password) return next(new Error("Password is required"));
 
   try {
+    // Type assertion for `this` to `UserDocument`
     this.password = await hash(this.password, 10);
     next();
   } catch (err) {
-    next(err as Error); // type assertion
+    next(err as Error);
   }
 });
 

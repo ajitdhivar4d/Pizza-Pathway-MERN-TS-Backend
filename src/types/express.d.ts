@@ -7,3 +7,19 @@ declare global {
     }
   }
 }
+
+export interface OrderItem {
+  categoryName: string;
+  name: string;
+  img: string;
+  options: {
+    half: string;
+    full: string;
+  }[];
+  description: string;
+}
+
+export interface OrderData {
+  Order_date: string;
+  items: OrderItem[];
+}

@@ -2,27 +2,25 @@ import { NextFunction, Request, Response } from "express";
 import { TryCatch } from "../middlewares/error";
 import { Item, ItemDocument } from "../models/foodItem";
 
-const addFoodItem = TryCatch(
-  async (req: Request, res: Response, next: NextFunction) => {
-    const { categoryName, name, img, options, description }: ItemDocument =
-      req.body;
+const addFoodItem = TryCatch(async (req: Request, res: Response) => {
+  const { categoryName, name, img, options, description }: ItemDocument =
+    req.body;
 
-    const item = new Item({
-      categoryName,
-      name,
-      img,
-      options,
-      description,
-    });
+  const item = new Item({
+    categoryName,
+    name,
+    img,
+    options,
+    description,
+  });
 
-    await item.save();
+  await item.save();
 
-    res.status(201).json({
-      success: true,
-      item,
-    });
-  },
-);
+  res.status(201).json({
+    success: true,
+    item,
+  });
+});
 
 const getFoodData = TryCatch(
   async (req: Request, res: Response, next: NextFunction) => {

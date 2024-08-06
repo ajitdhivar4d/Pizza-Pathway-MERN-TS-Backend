@@ -1,5 +1,6 @@
 import mongoose, { Document, model, Model, Schema } from "mongoose";
 
+// Define TypeScript interfaces
 interface Options {
   half: string;
   full: string;
@@ -23,6 +24,7 @@ export interface OrderDocument extends Document {
   order_data: OrderData[];
 }
 
+// Define Mongoose schemas
 const optionsSchema: Schema = new Schema({
   half: { type: String, required: true },
   full: { type: String, required: true },
@@ -51,5 +53,6 @@ const schema: Schema = new Schema(
   },
 );
 
+// Create and export the model
 export const Order: Model<OrderDocument> =
   mongoose.models.Order || model<OrderDocument>("Order", schema);

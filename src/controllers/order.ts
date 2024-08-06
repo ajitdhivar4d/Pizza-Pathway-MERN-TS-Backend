@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { Order } from "../models/orders";
 import { UserDocument } from "../models/user";
+import { OrderData } from "../types/express";
 
 const addOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -15,7 +16,7 @@ const addOrder = async (req: Request, res: Response, next: NextFunction) => {
       return;
     }
 
-    const formattedOrderData = {
+    const formattedOrderData: OrderData = {
       Order_date: order_date,
       items: order_data.map((item: any) => ({
         categoryName: item.categoryName,
@@ -36,7 +37,7 @@ const addOrder = async (req: Request, res: Response, next: NextFunction) => {
       await newOrder.save();
     } else {
       const existingOrderDate = existingOrder.order_data.find(
-        (order) => order.Order_date === order_date,
+        (order: OrderData) => order.Order_date === order_date,
       );
 
       if (existingOrderDate) {

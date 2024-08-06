@@ -1,4 +1,4 @@
-import { CorsOptions } from "cors";
+import cors, { CorsOptions } from "cors"; // Import 'cors' and its types
 
 const USER_TOKEN = "user-token";
 
@@ -14,4 +14,4 @@ const corsOptions: CorsOptions = {
   credentials: true,
 };
 
-export { USER_TOKEN, corsOptions, CorsOptions };
+export { USER_TOKEN, corsOptions };

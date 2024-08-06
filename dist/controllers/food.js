@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getFoodData = exports.addFoodItem = void 0;
 const error_1 = require("../middlewares/error");
 const foodItem_1 = require("../models/foodItem");
-const addFoodItem = (0, error_1.TryCatch)((req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+const addFoodItem = (0, error_1.TryCatch)((req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { categoryName, name, img, options, description } = req.body;
     const item = new foodItem_1.Item({
         categoryName,
