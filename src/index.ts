@@ -16,7 +16,7 @@ const port = process.env.PORT || 3000;
 
 connectDB(mongoURI);
 
-const app = express();
+const app: any = express();
 
 // Using Middleware Here
 app.use(express.json());

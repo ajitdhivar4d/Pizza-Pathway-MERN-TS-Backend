@@ -1,17 +1,19 @@
-import cors, { CorsOptions } from "cors"; // Import 'cors' and its types
+import cors from "cors"; // Import 'cors' and its types
 
-const USER_TOKEN = "user-token";
+const clientURL = process.env.CLIENT_URL || "http://default-url.com";
 
-const clientURL = process.env.CLIENT_URL;
+const allowedOrigins = [
+  "http://localhost:5173",
+  "http://localhost:4173",
+  clientURL,
+].filter((origin): origin is string => origin !== undefined);
 
-const corsOptions: CorsOptions = {
-  origin: [
-    "http://localhost:5173",
-    "http://localhost:4173",
-    clientURL as string,
-  ],
+const corsOptions: cors.CorsOptions = {
+  origin: allowedOrigins,
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true,
 };
+
+const USER_TOKEN = "user-token";
 
 export { USER_TOKEN, corsOptions };
