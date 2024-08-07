@@ -3,7 +3,6 @@
     "target": "ES6",
     "module": "commonjs",
     "outDir": "dist",
-    "rootDir": "./src",
     "strict": true,
     "baseUrl": "./",
     "moduleResolution": "node",
@@ -11,15 +10,8 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["types", "./node_modules/@types"]
+    "typeRoots": ["/types", "./node_modules/@types"]
   },
-  "include": [, "routes", "types", "utils", "index.ts"
-    "src/**/*",
-    "types/**/*",
-    "middlewares",
-    "lib",
-    "controllers",
-    "constants"
-  ],
+  "include": ["types/**/*"],
   "exclude": ["node_modules"]
 }
