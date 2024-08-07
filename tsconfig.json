@@ -11,8 +11,15 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "typeRoots": ["./src/types", "./node_modules/@types"]
+    "typeRoots": ["types", "./node_modules/@types"]
   },
-  "include": ["src/**/*", "types/**/*"],
+  "include": [, "routes", "types", "utils", "index.ts"
+    "src/**/*",
+    "types/**/*",
+    "middlewares",
+    "lib",
+    "controllers",
+    "constants"
+  ],
   "exclude": ["node_modules"]
 }
