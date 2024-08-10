@@ -1,16 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.corsOptions = exports.USER_TOKEN = void 0;
-const USER_TOKEN = "user-token";
-exports.USER_TOKEN = USER_TOKEN;
-const clientURL = process.env.CLIENT_URL;
+const clientURL = process.env.CLIENT_URL || "";
+const allowedOrigins = [
+    "http://localhost:5173",
+    "http://localhost:4173",
+    clientURL,
+].filter((origin) => origin !== "" && origin !== undefined);
 const corsOptions = {
-    origin: [
-        "http://localhost:5173",
-        "http://localhost:4173",
-        clientURL,
-    ],
+    origin: allowedOrigins,
     methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
 };
-exports.corsOptions = corsOptions;
+const USER_TOKEN = "user-token";
+export { USER_TOKEN, corsOptions };

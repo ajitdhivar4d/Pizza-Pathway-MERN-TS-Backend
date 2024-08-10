@@ -1,34 +1,27 @@
-"use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.cookieOptions = exports.sendToken = exports.connectDB = void 0;
-const mongoose_1 = __importDefault(require("mongoose"));
-const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+import jwt from "jsonwebtoken";
+import mongoose from "mongoose";
 const cookieOptions = {
-    maxAge: 15 * 24 * 60 * 60 * 1000,
-    sameSite: true,
     httpOnly: true,
-    secure: true,
+    secure: process.env.NODE_ENV === "production",
+    maxAge: 15 * 24 * 60 * 60 * 1000,
+    sameSite: "lax",
 };
-exports.cookieOptions = cookieOptions;
-const connectDB = (uri) => {
-    mongoose_1.default
+export const connectDB = (uri) => {
+    mongoose
         .connect(uri, { dbName: "PizzaPathway" })
-        .then((data) => console.log(`Connected to DB: ${data.connection.host} `))
-        .catch((err) => {
-        throw err;
-    });
+        .then((c) => console.log(`DB Connected to ${c.connection.host}`))
+        .catch((e) => console.log(e));
 };
-exports.connectDB = connectDB;
 const sendToken = (res, user, code, message) => {
     const jwtSecret = process.env.JWT_SECRET;
-    const token = jsonwebtoken_1.default.sign({ _id: user._id }, jwtSecret);
+    if (!jwtSecret) {
+        throw new Error("JWT_SECRET is not defined");
+    }
+    const token = jwt.sign({ id: String(user._id) }, jwtSecret);
     return res.status(code).cookie("user-token", token, cookieOptions).json({
         success: true,
         user,
         message,
     });
 };
-exports.sendToken = sendToken;
+export { cookieOptions, sendToken };
