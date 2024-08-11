@@ -10,7 +10,7 @@ import cors from "cors"; // Import 'cors' and its types
 // ].filter((origin): origin is string => origin !== "" && origin !== undefined);
 
 const corsOptions: cors.CorsOptions = {
-  origin: "https://pizza-pathway-mern-ts-frontend.vercel.app",
+  origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: ["Content-Type", "Authorization"],
   credentials: true,

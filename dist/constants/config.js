@@ -6,7 +6,7 @@
 //   clientURL,
 // ].filter((origin): origin is string => origin !== "" && origin !== undefined);
 const corsOptions = {
-    origin: "https://pizza-pathway-mern-ts-frontend.vercel.app",
+    origin: "*",
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
