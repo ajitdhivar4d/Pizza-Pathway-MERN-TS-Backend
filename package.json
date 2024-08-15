@@ -1,10 +1,10 @@
 {
   "name": "backendts",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/app.js",
   "type": "module",
   "scripts": {
-    "start": "node dist/index.js",
+    "start": "node dist/app.js",
     "build": "tsc",
     "watch": "tsc -w",
     "dev": "nodemon dist/app.js"
