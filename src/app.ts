@@ -1,7 +1,7 @@
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { config } from "dotenv";
-import express from "express";
+import express, { Request, Response } from "express";
 import { corsOptions } from "./constants/config.js";
 import { errorMiddleware } from "./middlewares/error.js";
 
@@ -25,6 +25,10 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.get("/home", (req: Request, res: Response) => {
+  res.json({ message: "Welcome to Pizza Pathway!" });
+});
 
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/food", foodRoute);

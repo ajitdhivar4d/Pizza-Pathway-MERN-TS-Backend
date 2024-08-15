@@ -18,6 +18,9 @@ app.use(cors(corsOptions));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.get("/home", (req, res) => {
+    res.json({ message: "Welcome to Pizza Pathway!" });
+});
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/food", foodRoute);
 app.use("/api/v1/order", orderRoute);
