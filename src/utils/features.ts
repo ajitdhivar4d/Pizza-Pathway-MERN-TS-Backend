@@ -11,7 +11,7 @@ export interface VUserType {
 
 const cookieOptions: CookieOptions = {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "PRODUCTION",
+  secure: process.env.NODE_ENV === "production",
   maxAge: 15 * 24 * 60 * 60 * 1000,
   sameSite: "lax",
 };
