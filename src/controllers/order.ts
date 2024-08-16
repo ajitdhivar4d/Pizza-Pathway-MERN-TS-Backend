@@ -7,13 +7,13 @@ const addOrder = TryCatch(
   async (req: Request, res: Response, next: NextFunction) => {
     const user = req.user;
     const email = user?.email;
-    const { orderData, orderDate = new Date() } = req.body;
+    const { orderData, date } = req.body;
 
-    if (!email || !orderData || !orderDate)
+    if (!email || !orderData || !date)
       return next(new ErrorHandler("All fields are required", 400));
 
     const formattedOrderData = {
-      orderDate: orderDate,
+      orderDate: date,
       items: orderData.map((item: any) => ({
         categoryName: item.categoryName,
         name: item.name,
@@ -34,7 +34,7 @@ const addOrder = TryCatch(
       await newOrder.save();
     } else {
       const existingOrderDate = existingOrder.orderData.find(
-        (order: any) => order.orderDate === orderDate,
+        (order: any) => order.orderDate === date,
       );
 
       if (existingOrderDate) {

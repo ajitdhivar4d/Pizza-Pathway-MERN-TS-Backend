@@ -5,5 +5,5 @@ const app = express();
 // After here user must be logged in to access the routes
 app.use(isAuthenticated);
 app.post("/addorder", addOrder);
-app.get("/myOrderData", getOrderData);
+app.get("/myorderdata", getOrderData);
 export default app;
