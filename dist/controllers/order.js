@@ -4,9 +4,15 @@ import { TryCatch } from "../middlewares/error.js";
 const addOrder = TryCatch(async (req, res, next) => {
     const user = req.user;
     const email = user?.email;
-    const { orderData, date } = req.body;
-    if (!email || !orderData || !date)
-        return next(new ErrorHandler("All fields are required", 400));
+    const { orderData, orderDate: date } = req.body;
+    // if (!email || !orderData || !date)
+    //   return next(new ErrorHandler("All fields are required", 400));
+    if (!email)
+        return next(new ErrorHandler("Email is required", 400));
+    if (!orderData.length)
+        return next(new ErrorHandler("Order data is required", 400));
+    if (!date)
+        return next(new ErrorHandler("Date is required", 400));
     const formattedOrderData = {
         orderDate: date,
         items: orderData.map((item) => ({
