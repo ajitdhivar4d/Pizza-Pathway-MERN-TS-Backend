@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response } from "express";
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { USER_TOKEN } from "../constants/config.js";
-import { ErrorHandler } from "../utils/utility-class.js";
 import { User } from "../models/user.js";
+import { ErrorHandler } from "../utils/utility-class.js";
 
 declare global {
   namespace Express {

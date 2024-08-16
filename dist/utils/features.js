@@ -17,7 +17,7 @@ const sendToken = (res, user, code, message) => {
     if (!jwtSecret) {
         throw new Error("JWT_SECRET is not defined");
     }
-    const token = jwt.sign({ id: String(user._id) }, jwtSecret);
+    const token = jwt.sign({ id: String(user.id) }, jwtSecret);
     return res.status(code).cookie("user-token", token, cookieOptions).json({
         success: true,
         user,
