@@ -16,8 +16,8 @@ const newUser = TryCatch(async (req, res, next) => {
         password,
     });
     await user.save();
-    const vUser = { _id: user._id, name: user.name, email: user.email };
-    sendToken(res, vUser, 201, "User created");
+    // const vUser = { _id: user._id, name: user.name, email: user.email };
+    sendToken(res, user, 201, "User created");
 });
 const loginUser = TryCatch(async (req, res, next) => {
     const { email, password } = req.body;
@@ -29,8 +29,8 @@ const loginUser = TryCatch(async (req, res, next) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch)
         return next(new ErrorHandler("Invalid username or Password", 404));
-    const vUser = { _id: user._id, name: user.name, email: user.email };
-    sendToken(res, vUser, 200, `Welcome Back ,${user.name}`);
+    // const vUser = { _id: user._id, name: user.name, email: user.email };
+    sendToken(res, user, 200, `Welcome Back ,${user.name}`);
 });
 const logoutUser = async (req, res, next) => {
     try {

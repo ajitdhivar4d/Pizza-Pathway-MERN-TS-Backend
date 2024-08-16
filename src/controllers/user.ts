@@ -28,9 +28,9 @@ const newUser = TryCatch(
     });
 
     await user.save();
-    const vUser = { _id: user._id, name: user.name, email: user.email };
+    // const vUser = { _id: user._id, name: user.name, email: user.email };
 
-    sendToken(res, vUser, 201, "User created");
+    sendToken(res, user, 201, "User created");
   },
 );
 
@@ -49,9 +49,9 @@ const loginUser = TryCatch(async (req, res, next) => {
   if (!isMatch)
     return next(new ErrorHandler("Invalid username or Password", 404));
 
-  const vUser = { _id: user._id, name: user.name, email: user.email };
+  // const vUser = { _id: user._id, name: user.name, email: user.email };
 
-  sendToken(res, vUser, 200, `Welcome Back ,${user.name}`);
+  sendToken(res, user, 200, `Welcome Back ,${user.name}`);
 });
 
 const logoutUser = async (req: Request, res: Response, next: NextFunction) => {

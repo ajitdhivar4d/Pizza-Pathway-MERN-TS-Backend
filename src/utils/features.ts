@@ -23,12 +23,7 @@ export const connectDB = (uri: string) => {
     .catch((e) => console.log(e));
 };
 
-const sendToken = (
-  res: Response,
-  user: VUserType,
-  code: number,
-  message: string,
-) => {
+const sendToken = (res: Response, user: any, code: number, message: string) => {
   const jwtSecret = process.env.JWT_SECRET as string;
 
   if (!jwtSecret) {
